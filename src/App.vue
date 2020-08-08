@@ -2,17 +2,19 @@
   <div id="app">
     <Header/>
     <ImageUpload/>
+    <Gallery/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import ImageUpload from './components/ImageUpload.vue';
+import Gallery from './components/Gallery.vue';
 
 export default {
   name: 'App',
   components: {
-    Header, ImageUpload,
+    Header, ImageUpload, Gallery,
   },
 };
 </script>
