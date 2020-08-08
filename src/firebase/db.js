@@ -1,6 +1,6 @@
-import App from './app';
+import app from './app';
 import 'firebase/firestore';
 
-const DB = App.firestore();
+const db = app.firestore();
 
-export default DB;
+export default db;

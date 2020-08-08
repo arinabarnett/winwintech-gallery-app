@@ -1,6 +1,6 @@
-import App from './app';
+import app from './app';
 import 'firebase/storage';
 
-const Storage = App.storage();
+const storage = app.storage();
 
-export default Storage;
+export default storage;
