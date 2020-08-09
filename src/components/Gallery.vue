@@ -1,33 +1,37 @@
 <template>
-  <div class="cards-list root__section">
+  <b-container class="cards-list root__section">
     <div class="image-card" v-for="image in images" :key="image.id">
+      <b-button-toolbar>
+        <b-button-group class="mr-1">
+          <b-button title="Edit image">
+            <b-icon icon="pencil" aria-hidden="true"></b-icon>
+          </b-button>
+          <b-button @click="onDelete(image)" title="Delete image">
+            <b-icon icon="trash2" aria-hidden="true"></b-icon>
+          </b-button>
+        </b-button-group>
+      </b-button-toolbar>
       <img class="image-card__image" :src="image.url" />
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import db from '../firebase/db';
 
 export default {
   name: 'Gallery',
-  data() {
-    return {
-      images: [],
-    };
-  },
   created() {
-    db.collection('images')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            url: doc.data().src,
-          };
-          this.images.push(data);
-        });
-      });
+    this.$store.dispatch('fetchImages');
+  },
+  computed: {
+    images() {
+      return this.$store.state.images;
+    },
+  },
+  methods: {
+    onDelete(image) {
+      this.$store.commit('deleteImage', image);
+    },
   },
 };
 </script>
@@ -35,9 +39,9 @@ export default {
 <style>
 .cards-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-  grid-gap: 1rem;
-  max-width: 80rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-gap: 1.5rem;
+  max-width: 85rem;
   margin: 5rem auto;
   padding: 0 2rem;
 }

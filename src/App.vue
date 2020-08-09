@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <ImageUpload/>
-    <Gallery/>
+    <Gallery images={images} />
   </div>
 </template>
 
